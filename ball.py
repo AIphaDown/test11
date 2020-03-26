@@ -20,3 +20,6 @@ class Ball:
         if self.rect.top < 0 or self.rect.bottom > screen_info.current_h:
             self.speed[1] *= -1
             self.rect.move_ip(0, self.speed[1])
+
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)

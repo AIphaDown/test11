@@ -1,6 +1,7 @@
 import pygame
 import random
 from pygame.locals import *
+from ball import *
 
 pygame.init()
 
@@ -15,24 +16,20 @@ color = (98, 26, 255)
 
 # ball
 balls = []
-# ball_image = pygame.image.load("ball.png")
-# ball_image = pygame.transform.smoothscale(ball_image, (30, 30))
-# ball_rect = ball_image.get_rect()
-# ball_rect.center = (width//2, height//2)
-# speed = pygame.math.Vector2(0, 5)
-# speed.rotate_ip(random.randint(0, 360))
 
-# 3/25/20: call Class Ball in main function
-##########################################
 def main():
+    for i in range(4):
+        balls.append(Ball((width / 2, height / 2)))
     while True:
         clock.tick(60)
-        move_ball()
         for event in pygame.event.get():
             if event.type == QUIT:
                 sys.exit()
         screen.fill(color)
-        screen.blit(ball_image, ball_rect)
+        for ball in balls:
+            ball.update()
+        for ball in balls:
+            ball.draw(screen)
         pygame.display.flip()
 
 if __name__ == '__main__':
